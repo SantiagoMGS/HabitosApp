@@ -1,0 +1,23 @@
+﻿@model HabitosApp.Web.DTOs.HabitTypeDto
+
+@{
+    ViewData["Title"] = "Edit HabitType";
+}
+
+<h1>Editar tipo Habito</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Description">Descripcion</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

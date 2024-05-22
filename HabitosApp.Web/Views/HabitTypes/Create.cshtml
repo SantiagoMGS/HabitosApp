@@ -1,0 +1,24 @@
+﻿@model HabitosApp.Web.DTOs.HabitTypeDto
+
+@{
+    ViewData["Title"] = "Create HabitType";
+}
+
+<h1>Crear tipo de Habito</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Description">Descripcion</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
