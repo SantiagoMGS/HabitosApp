@@ -1,0 +1,67 @@
+@inject HabitosApp.Web.Services.IUsersService _usersService
+
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Dashboard"
+                                                ? "" : "collapsed")" asp-action="Dashboard" asp-controller="Home">
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showHabits", "Habits"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Habits"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Index"
+                                                ? "" : "collapsed")" asp-controller="Habits" asp-action="Index">
+                    <i class="fa fa-heart"></i>
+                    <span>Habitos</span>
+                </a>
+            </li>
+        }
+
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showMedications", "Medications"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Medications"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Index"
+                                                ? "" : "collapsed")" asp-controller="Medications" asp-action="Index">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Medicamentos</span>
+                </a>
+            </li>
+        }
+
+
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showRoles", "Roles"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Roles"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Index"
+                                                ? "" : "collapsed")" asp-controller="Roles" asp-action="Index">
+                    <i class="bi bi-shield-lock"></i>
+                    <span>Roles</span>
+                </a>
+            </li>
+        }
+
+        @if (await _usersService.CurrentUserIsAuthorizedAsync("showUsers", "Users"))
+        {
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Users"
+                                                && ViewContext.RouteData.Values["Action"].ToString() == "Index"
+                                                ? "" : "collapsed")" asp-controller="Account" asp-action="Index">
+                    <i class="fa fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+        }
+
+    </ul>
+
+</aside>
